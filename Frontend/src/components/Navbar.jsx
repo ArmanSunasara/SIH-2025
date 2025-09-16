@@ -1,11 +1,11 @@
-import React from 'react';
+import { Link } from "react-router-dom";
 
-function Navbar() {
+export default function Navbar() {
   return (
-    <nav style={{ background: '#2d3a4b', color: '#fff', padding: '1rem' }}>
-      <h2>SIH2025 Dashboard</h2>
+    <nav>
+      <Link to="/">Submit Report</Link> |{" "}
+      <Link to="/reports">Reports</Link> |{" "}
+      <Link to="/dashboard">Dashboard</Link>
     </nav>
   );
 }
-
-export default Navbar;

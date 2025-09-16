@@ -1,13 +1,8 @@
-import React from 'react';
-import ReportForm from '../components/ReportForm';
-
-function Dashboard() {
+export default function Dashboard() {
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Dashboard</h1>
-      <ReportForm />
+    <div>
+      <h1>Health Dashboard</h1>
+      <p>📊 Outbreak predictions and hotspot maps will appear here.</p>
     </div>
   );
 }
-
-export default Dashboard;

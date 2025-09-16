@@ -1,51 +1,113 @@
-import React, { useState } from 'react';
-import { submitReport } from '../services/api';
+import { useState } from "react";
+import { createReport } from "../services/api";
 
-function ReportForm() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+export default function ReportForm() {
+  const [form, setForm] = useState({
+    reporterId: "",
+    patientAge: "",
+    patientGender: "",
+    symptoms: "",
+    village: "",
+    lat: "",
+    lng: ""
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setMessage('');
     try {
-      await submitReport({ title, description });
-      setMessage('Report submitted successfully!');
-      setTitle('');
-      setDescription('');
-    } catch (err) {
-      setMessage('Error submitting report.');
+      const payload = {
+        reporterId: form.reporterId,
+        patientAge: Number(form.patientAge),
+        patientGender: form.patientGender,
+        symptoms: form.symptoms.split(",").map((s) => s.trim()),
+        location: {
+          lat: Number(form.lat),
+          lng: Number(form.lng),
+          village: form.village
+        }
+      };
+      await createReport(payload);
+      alert("✅ Report submitted successfully!");
+      setForm({
+        reporterId: "",
+        patientAge: "",
+        patientGender: "",
+        symptoms: "",
+        village: "",
+        lat: "",
+        lng: ""
+      });
+    } catch (error) {
+      console.error(error);
+      alert("❌ Failed to submit report");
     }
-    setLoading(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ background: '#fff', padding: '2rem', borderRadius: '8px' }}>
-      <h3>Submit a Report</h3>
+    <form onSubmit={handleSubmit} className="form-container">
+      <h2>Submit Health Report</h2>
+
       <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
+        name="reporterId"
+        value={form.reporterId}
+        onChange={handleChange}
+        placeholder="Reporter ID"
         required
-        style={{ display: 'block', marginBottom: '1rem', width: '100%' }}
       />
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={e => setDescription(e.target.value)}
+
+      <input
+        name="patientAge"
+        value={form.patientAge}
+        onChange={handleChange}
+        placeholder="Patient Age"
         required
-        style={{ display: 'block', marginBottom: '1rem', width: '100%' }}
       />
-      <button type="submit" disabled={loading}>
-        {loading ? 'Submitting...' : 'Submit'}
-      </button>
-      {message && <p>{message}</p>}
+
+      <input
+        name="patientGender"
+        value={form.patientGender}
+        onChange={handleChange}
+        placeholder="Patient Gender"
+        required
+      />
+
+      <input
+        name="symptoms"
+        value={form.symptoms}
+        onChange={handleChange}
+        placeholder="Symptoms (comma separated)"
+        required
+      />
+
+      <input
+        name="village"
+        value={form.village}
+        onChange={handleChange}
+        placeholder="Village Name"
+        required
+      />
+
+      <input
+        name="lat"
+        value={form.lat}
+        onChange={handleChange}
+        placeholder="Latitude"
+        required
+      />
+
+      <input
+        name="lng"
+        value={form.lng}
+        onChange={handleChange}
+        placeholder="Longitude"
+        required
+      />
+
+      <button type="submit">Submit</button>
     </form>
   );
 }
-
-export default ReportForm;

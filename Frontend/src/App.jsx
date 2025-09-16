@@ -1,14 +1,19 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import './styles.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ReportForm from "./components/ReportForm";
+import Reports from "./pages/Reports";
+import Dashboard from "./pages/Dashboard";
+import Navbar from "./components/Navbar";
+import "./styles.css";
 
-function App() {
+export default function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      {/* Add your routes or main content here */}
-    </div>
+      <Routes>
+        <Route path="/" element={<ReportForm />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

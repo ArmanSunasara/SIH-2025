@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { fetchReports } from '../services/api';
+import { useEffect, useState } from "react";
+import { getReports } from "../services/api";
 
-function Reports() {
+export default function Reports() {
   const [reports, setReports] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchReports().then(data => {
+    async function fetchReports() {
+      const { data } = await getReports();
       setReports(data);
-      setLoading(false);
-    });
+    }
+    fetchReports();
   }, []);
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Reports</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul>
-          {reports.map((report, idx) => (
-            <li key={idx}>
-              <strong>{report.title}</strong>: {report.description}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div>
+      <h1>Submitted Reports</h1>
+      <ul>
+        {reports.map((r) => (
+          <li key={r._id}>
+            {r.reporterId} → {r.symptoms.join(", ")} in {r.location.village}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
-
-export default Reports;
