@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createReport } from "../services/api";
+import { createReport, getMLPrediction } from "../services/api";
 
 export default function ReportForm() {
   const [form, setForm] = useState({
@@ -19,8 +19,7 @@ export default function ReportForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const payload = {
-        reporterId: form.reporterId,
+      const features = {
         patientAge: Number(form.patientAge),
         patientGender: form.patientGender,
         symptoms: form.symptoms.split(",").map((s) => s.trim()),
@@ -29,6 +28,16 @@ export default function ReportForm() {
           lng: Number(form.lng),
           village: form.village
         }
+      };
+      // Get ML prediction from backend
+      const mlRes = await getMLPrediction(features);
+      if (mlRes?.data?.probability !== undefined) {
+        alert(`ML Prediction Probability: ${mlRes.data.probability}`);
+      }
+      // Optionally, submit report after prediction
+      const payload = {
+        reporterId: form.reporterId,
+        ...features
       };
       await createReport(payload);
       alert("✅ Report submitted successfully!");

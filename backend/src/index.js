@@ -2,7 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
+
 import reportRoutes from "./routes/reportRoutes.js";
+import mlRoutes from "./routes/mlRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -16,7 +18,8 @@ app.use(express.json());
 connectDB();
 
 // Routes
-app.use("/api/reports", reportRoutes);
+
+app.use("/api/ml", mlRoutes);
 
 app.get("/", (req, res) => res.send("Smart Health Backend Running"));
 
