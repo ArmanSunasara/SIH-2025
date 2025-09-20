@@ -617,6 +617,10 @@ REACT_APP_ML_URL=https://your-domain.com/ml
 - [ ] Integration with IoT sensors
 - [ ] Multi-language support
 
+## Contributors  
+- [@RanaHeet24](https://github.com/RanaHeet24)  
+- [@ArmanSunasara](https://github.com/ArmanSunasra)  
+
 ## 🤝 Contributing
 
 1. Fork the repository
