@@ -1,0 +1,128 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-hooks"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "no-console": "warn",
+        "no-debugger": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "prefer-arrow-callback": "error",
+        "arrow-spacing": "error",
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "array-bracket-spacing": [
+            "error",
+            "never"
+        ],
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "no-trailing-spaces": "error",
+        "space-before-blocks": "error",
+        "keyword-spacing": "error",
+        "space-infix-ops": "error",
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 2,
+                "maxEOF": 1
+            }
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120,
+                "ignoreUrls": true
+            }
+        ],
+        "complexity": [
+            "warn",
+            10
+        ],
+        "max-depth": [
+            "warn",
+            4
+        ],
+        "max-params": [
+            "warn",
+            5
+        ],
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "warn",
+        "react/no-unescaped-entities": "off",
+        "react/display-name": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "overrides": [
+        {
+            "files": [
+                "src/**/*.test.js",
+                "src/**/*.test.jsx",
+                "src/**/*.spec.js",
+                "src/**/*.spec.jsx"
+            ],
+            "env": {
+                "jest": true
+            },
+            "rules": {
+                "no-console": "off",
+                "max-len": "off"
+            }
+        }
+    ]
+}

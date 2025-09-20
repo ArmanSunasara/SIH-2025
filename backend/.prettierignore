@@ -1,0 +1,11 @@
+# Ignore files from formatting
+node_modules/
+coverage/
+dist/
+build/
+logs/
+*.log
+.env*
+!.env.example
+package-lock.json
+*.md

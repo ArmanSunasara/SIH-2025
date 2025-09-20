@@ -1,0 +1,9 @@
+# Ignore files from linting
+node_modules/
+coverage/
+dist/
+build/
+logs/
+*.log
+.env*
+!.env.example
