@@ -12,9 +12,9 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from sklearn.preprocessing import StandardScaler
 from typing import Tuple, Dict, Any
 
-from ..utils.logger import get_logger
-from ..utils.data_validator import validate_training_data
-from ..utils.model_evaluator import ModelEvaluator
+from utils.logger import get_logger
+from utils.data_validator import validate_training_data
+from utils.model_evaluator import ModelEvaluator
 
 logger = get_logger(__name__)
 

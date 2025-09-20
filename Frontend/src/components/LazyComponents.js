@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { HelmetProvider } from 'react-helmet-async';
 
 // Lazy load components for code splitting
 const Home = React.lazy(() => import('../pages/Home'));
@@ -57,14 +56,12 @@ export const LazyHistory = withLazyLoading(History, 'LazyHistory');
 
 // App wrapper with providers
 export const AppWrapper = ({ children }) => (
-  <HelmetProvider>
-    <ErrorBoundary
-      FallbackComponent={ErrorFallback}
-      onReset={() => window.location.reload()}
-    >
-      {children}
-    </ErrorBoundary>
-  </HelmetProvider>
+  <ErrorBoundary
+    FallbackComponent={ErrorFallback}
+    onReset={() => window.location.reload()}
+  >
+    {children}
+  </ErrorBoundary>
 );
 
 export { LoadingSpinner, ErrorFallback };
