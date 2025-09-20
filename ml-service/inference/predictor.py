@@ -8,9 +8,9 @@ import numpy as np
 from typing import Dict, List, Union, Optional
 from pydantic import BaseModel, Field, validator
 
-from ..utils.logger import get_logger
-from ..utils.data_validator import validate_inference_data
-from ..utils.model_evaluator import ModelEvaluator
+from utils.logger import get_logger
+from utils.data_validator import validate_inference_data
+from utils.model_evaluator import ModelEvaluator
 
 logger = get_logger(__name__)
 
